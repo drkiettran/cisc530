@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+void basic_00() {
+	printf("basic_00:\n");
+	int i;
+	int j=10;
+	char* hello_str = "Hello, world!";
+
+	printf("i=%d\n", i);
+	printf("j=%d\n", j);
+	printf("hello_str=%s\n", hello_str);
+	printf("%s\n", hello_str);
+	printf("Hello, world!\n");
+
+	return;
+}
+
+void basic_01() {
+	printf("basic_01:\n");
+	int i = 100;
+	int* ip = &i;
+	int** ipp = &ip;
+	long l = 12345;
+	long* lp = &l;
+	long** lpp = &lp;
+
+	char* hello_str = "Hello, world!";
+	
+	printf("i=0x%X\n",i);
+	printf("ip=%p\n", (void*)ip);
+	printf("ipp=%p\n",(void*)ipp);
+	return;
+}
+
+void basic_02() {
+	int [2] is = {1,2}	
+}
+
+int main() {
+	printf("Bootcamp code:\n\n");
+	// basic_00();
+	basic_01();
+}
