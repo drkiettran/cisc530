@@ -10,6 +10,7 @@
 //
 struct thread_info {
 	int count;
+	char* name;
 	struct timespec *ts;
 };
 
@@ -18,7 +19,7 @@ void *thread_1(void *vargp) {
 
 	for (int i = 0; i < ti->count; i++) {
 		nanosleep(ti->ts, NULL);
-		printf("thread_1: %d.awake ...\n", i);
+		printf("%s: %d.awake ...\n", ti->name, i);
 	}
 
 	return NULL;
@@ -27,7 +28,7 @@ void *thread_1(void *vargp) {
 int main()
 {
 	struct timespec ts = {0, 800000000};
-	struct thread_info ti = {8, &ts};
+	struct thread_info ti = {8, "thread_1 #1", &ts};
 
 	pthread_t thread_id;
 	printf("Main: Before Thread\n");
