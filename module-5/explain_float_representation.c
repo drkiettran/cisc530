@@ -149,6 +149,7 @@ $
 void display_float(char *argument);
 uint32_t get_float_bits(float f);
 void print_float_bits(uint32_t bits);
+void print_float_hex(float f);
 void print_bit_range(uint32_t value, int high, int low);
 void print_float_details(uint32_t bits);
 uint32_t extract_bit_range(uint32_t value, int high, int low);
@@ -183,9 +184,11 @@ void display_float(char *argument) {
         bits = convert_bitstring_to_uint32(argument);
     } else {
         float number = strtof(argument, NULL);
+        print_float_hex(number);
         bits = get_float_bits(number);
         printf("\n%s is represented as IEEE-754 single-precision by these bits:\n\n", argument);
         print_float_bits(bits);
+
     }
 
     print_float_details(bits);
@@ -280,6 +283,16 @@ void print_float_bits(uint32_t bits) {
     printf(" | ");
     print_bit_range(bits, FRACTION_HIGH_BIT, FRACTION_LOW_BIT);
     printf("\n\n");
+}
+
+// print out the hex value of a float
+void print_float_hex(float f) {
+    union {
+        float f;
+        unsigned int u;
+    } f2u = {.f = f};
+
+    printf("\n%e = 0x%X\n", f, f2u.u);
 }
 
 // print the binary representation of a value
