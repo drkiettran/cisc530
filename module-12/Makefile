@@ -51,8 +51,14 @@ ch10_1_debug: ch10_1.c
 	$(CC) -c -g -o ch10_1.o ch10_1.c
 	$(CC) -o ch10_1 ch10_1.o
 
-all: ch10_1 ch10_2 ch10_3 ch10_ex3 ch10_ex5 ch10_5 ch10_11
+ch10_seek.o: ch10_seek.c
+	$(CC) -c -o ch10_seek.o ch10_seek.c
+
+ch10_seek: ch10_seek.o
+	$(CC) -o ch10_seek ch10_seek.o
+
+all: ch10_1 ch10_2 ch10_3 ch10_ex3 ch10_ex5 ch10_5 ch10_11 ch10_seek
 
 clean:
 	rm *.o
-	rm ch10_1 ch10_2 ch10_3 ch10_ex3 ch10_5 ch10_ex5 ch10_11
+	rm ch10_1 ch10_2 ch10_3 ch10_ex3 ch10_5 ch10_ex5 ch10_11 ch10_seek
